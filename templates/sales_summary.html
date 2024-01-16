@@ -1,0 +1,30 @@
+<!-- templates/sales_summary.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Sales Summary</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">Metric</th>
+                        <th scope="col">Value</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Total Revenue</td>
+                        <td>${{ summary.total_revenue|default(0) }}</td>
+                    </tr>
+                    <tr>
+                        <td>Most Sold Product</td>
+                        <td>{{ summary.most_sold_product|default('N/A') }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
