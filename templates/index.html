@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales Management</title>
+</head>
+<body>
+    <h1>Sales Management System</h1>
+
+
+    <form action="/upload" method="post" enctype="multipart/form-data">
+        <label for="file">Upload Sales Excel File:</label>
+        <input type="file" name="file" id="file" accept=".xlsx, .xls">
+        <input type="submit" value="Upload">
+    </form>
+
+    <h2>Sales Data:</h2>
+    {{ sales_data|safe }}
+
+  <!-- ... -->
+
+<h2>All Data:</h2>
+{{ all_data|safe }}
+
+<!-- ... -->
+</body>
+</html>
