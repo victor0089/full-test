@@ -1,0 +1,28 @@
+<!-- templates/upload_history.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Upload History</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">File Name</th>
+                        <th scope="col">Date Uploaded</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for upload in history %}
+                        <tr>
+                            <td>{{ upload.file_name }}</td>
+                            <td>{{ upload.date_uploaded.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
