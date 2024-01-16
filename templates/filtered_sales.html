@@ -38,3 +38,53 @@
         </div>
     </div>
 {% endblock %}
+
+<!-- templates/filtered_sales.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Filtered Sales Data</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form method="GET" action="{{ url_for('filtered_sales', user_id=user_id) }}">
+                <div class="mb-3">
+                    <label for="category" class="form-label">Product Category</label>
+                    <input type="text" class="form-control" id="category" name="category" value="{{ category }}">
+                </div>
+                <div class="mb-3">
+                    <label for="start_date" class="form-label">Start Date</label>
+                    <input type="date" class="form-control" id="start_date" name="start_date" value="{{ start_date }}">
+                </div>
+                <div class="mb-3">
+                    <label for="end_date" class="form-label">End Date</label>
+                    <input type="date" class="form-control" id="end_date" name="end_date" value="{{ end_date }}">
+                </div>
+                <button type="submit" class="btn btn-primary">Apply Filters</button>
+            </form>
+
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Product</th>
+                            <th>Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for row in filtered_data %}
+                            <tr>
+                                <td>{{ row.date|date("Y-m-d") }}</td>
+                                <td>{{ row.product }}</td>
+                                <td>{{ row.amount }}</td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
