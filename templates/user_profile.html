@@ -26,6 +26,15 @@
 <a href="{{ url_for('logout') }}" class="btn btn-danger">Logout</a>
 
 <!-- ... -->
+    <!-- ... -->
+
+<h2>User Data:</h2>
+{{ user_data|safe }}
+
+{{ user_data.to_html()|safe }}
+
+<!-- ... -->
+
 
 </body>
 </html>
