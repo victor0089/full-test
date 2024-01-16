@@ -291,5 +291,65 @@
 
     <!-- ... (existing code) -->
 {% endblock %}
+
+    <!-- templates/user_profile.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">User Profile</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2>User Information:</h2>
+            <!-- ... (existing code) -->
+
+            <h2>Sales Data:</h2>
+            <form method="GET" action="{{ url_for('user_profile', user_id=user.id) }}">
+                <div class="input-group mb-3">
+                    <input type="text" class="form-control" placeholder="Search for product or date" name="search" value="{{ search_query }}">
+                    <button class="btn btn-primary" type="submit">Search</button>
+                </div>
+            </form>
+
+            {% for page in user_data.pages %}
+                {% if user_data.page == page %}
+                    <div class="table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Product</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row in user_data.items %}
+                                    <tr>
+                                        <td>{{ row.date }}</td>
+                                        <td>{{ row.product }}</td>
+                                        <td>{{ row.amount }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                {% endif %}
+            {% endfor %}
+
+            <div class="pagination">
+                {{ user_data.prev() }}
+                Page {{ user_data.page }} of {{ user_data.pages }}
+                {{ user_data.next() }}
+            </div>
+
+            <!-- ... (existing code) -->
+        </div>
+
+        <!-- ... (existing code) -->
+    </div>
+
+    <!-- ... (existing code) -->
+{% endblock %}
 </body>
 </html>
