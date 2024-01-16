@@ -140,5 +140,57 @@
     <!-- ... (existing code) -->
 
 {% endblock %}
+
+    <!-- templates/user_profile.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">User Profile</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <h2>User Information:</h2>
+            <p><strong>Username:</strong> {{ user.username }}</p>
+            <p><strong>Email:</strong> {{ user.email }}</p>
+            <p><strong>Member Since:</strong> {{ user.join_date.strftime('%B %d, %Y') }}</p>
+
+            <h2>Sales Data:</h2>
+            {{ user_data|safe }}
+
+            <!-- ... (existing code) -->
+        </div>
+
+        <div class="col-md-4">
+            <h2>Update Profile:</h2>
+            <form method="POST" action="{{ url_for('user_profile', user_id=user.id) }}">
+                {{ form.hidden_tag() }}
+                {{ form.csrf_token }}
+                <div class="mb-3">{{ form.new_username.label }}</div>
+                <div class="mb-3">{{ form.new_username(class="form-control") }}</div>
+                <div class="mb-3">{{ form.new_email.label }}</div>
+                <div class="mb-3">{{ form.new_email(class="form-control") }}</div>
+                <div>{{ form.submit(class="btn btn-primary") }}</div>
+            </form>
+
+            <h2>Update Password:</h2>
+            <form method="POST" action="{{ url_for('update_password', user_id=user.id) }}">
+                {{ password_form.hidden_tag() }}
+                {{ password_form.csrf_token }}
+                <div class="mb-3">{{ password_form.old_password.label }}</div>
+                <div class="mb-3">{{ password_form.old_password(class="form-control") }}</div>
+                <div class="mb-3">{{ password_form.new_password.label }}</div>
+                <div class="mb-3">{{ password_form.new_password(class="form-control") }}</div>
+                <div class="mb-3">{{ password_form.confirm_password.label }}</div>
+                <div class="mb-3">{{ password_form.confirm_password(class="form-control") }}</div>
+                <div>{{ password_form.submit(class="btn btn-primary") }}</div>
+            </form>
+
+            <!-- ... (existing code) -->
+        </div>
+    </div>
+
+    <!-- ... (existing code) -->
+{% endblock %}
 </body>
 </html>
