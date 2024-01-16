@@ -1,0 +1,19 @@
+<!-- templates/upload_file.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Upload Excel File</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <form method="POST" enctype="multipart/form-data">
+                <div class="mb-3">
+                    <label for="file" class="form-label">Choose Excel File</label>
+                    <input type="file" class="form-control" id="file" name="file" accept=".xlsx" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Upload</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}
