@@ -1,0 +1,18 @@
+<!-- templates/delete_account.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Delete Account</h1>
+
+    <div class="mt-4">
+        <p>Are you sure you want to delete your account?</p>
+        <form method="POST" action="{{ url_for('delete_account', user_id=current_user.id) }}">
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+            <div class="mb-3">{{ form.confirm_delete.label }}</div>
+            <div class="mb-3">{{ form.confirm_delete(class="form-control") }}</div>
+            <div>{{ form.submit(class="btn btn-danger") }}</div>
+        </form>
+    </div>
+{% endblock %}
