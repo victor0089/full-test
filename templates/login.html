@@ -1,0 +1,35 @@
+<!-- templates/login.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Log In</h1>
+
+    <div class="mt-4">
+        <form method="POST" action="{{ url_for('login') }}">
+            {{ form.hidden_tag() }}
+            {{ form.csrf_token }}
+
+            <div class="mb-3">
+                {{ form.username.label }}
+                {{ form.username(class="form-control") }}
+            </div>
+
+            <div class="mb-3">
+                {{ form.password.label }}
+                {{ form.password(class="form-control") }}
+            </div>
+
+            <div class="mb-3 form-check">
+                {{ form.remember(class="form-check-input") }}
+                {{ form.remember.label(class="form-check-label") }}
+            </div>
+
+            <button type="submit" class="btn btn-primary">Log In</button>
+        </form>
+    </div>
+
+    <div class="mt-4">
+        <p>Don't have an account? <a href="{{ url_for('register') }}">Register here</a>.</p>
+    </div>
+{% endblock %}
