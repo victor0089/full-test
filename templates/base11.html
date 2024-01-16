@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}Your App Title{% endblock %}</title>
+    <!-- Add your static files (CSS, JS) links here -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header>
+        <h1>{% block header %}Your App Header{% endblock %}</h1>
+        <!-- Add your navigation links or menu here -->
+        <nav>
+            <ul>
+                <li><a href="/">Home</a></li>
+                <li><a href="/about">About</a></li>
+                <!-- Add more navigation links as needed -->
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer>
+        <!-- Add your footer content here -->
+        <p>&copy; 2024 Your App</p>
+    </footer>
+
+    <!-- Add your static files (JS) scripts here -->
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+
+    <!-- Additional Features -->
+
+    <!-- Flask-SocketIO -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.3/socket.io.js"></script>
+    <script type="text/javascript">
+        var socket = io.connect('http://' + document.domain + ':' + location.port + '/chat');
+    </script>
+
+    <!-- Flask-JSGlue -->
+    {{ JSGlue.include() }}
+
+    <!-- Flask-Limiter -->
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script>
+        axios.get('/api/limited')
+            .then(function(response) {
+                console.log(response.data);
+            })
+            .catch(function(error) {
+                console.error(error);
+            });
+    </script>
+
+    <!-- Flask-Restful-Swagger -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.0.5/swagger-ui.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.0.5/swagger-ui-bundle.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/swagger-ui/4.0.5/swagger-ui-standalone-preset.js"></script>
+
+</body>
+</html>
