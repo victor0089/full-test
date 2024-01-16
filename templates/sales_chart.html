@@ -1,0 +1,17 @@
+<!-- templates/sales_chart.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Sales Data Chart</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-body">
+                    {{ chart_html|safe }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
