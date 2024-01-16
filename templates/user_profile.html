@@ -34,7 +34,78 @@
 {{ user_data.to_html()|safe }}
 
 <!-- ... -->
+ <h2>Product Quantity Chart:</h2>
+    <img src="data:image/png;base64,{{ chart }}" alt="Product Quantity Chart">
+    <!-- ... -->
 
+<h2>File Upload:</h2>
+<form method="POST" action="{{ url_for('user_profile', user_id=user.id) }}" enctype="multipart/form-data">
+    {{ file_upload_form.hidden_tag() }}
+    {{ file_upload_form.csrf_token }}
+    <div>{{ file_upload_form.photo.label }}</div>
+    <div>{{ file_upload_form.photo() }}</div>
+    <div>{{ file_upload_form.document.label }}</div>
+    <div>{{ file_upload_form.document() }}</div>
+    <div>{{ file_upload_form.submit() }}</div>
+</form>
+
+<!-- ... -->
+
+<!-- ... -->
+
+<h2>Uploaded Files:</h2>
+{% if uploaded_photos %}
+    <p>Uploaded Photos:</p>
+    <img src="{{ uploaded_photos }}" alt="User Photo">
+{% endif %}
+
+{% if uploaded_documents %}
+    <p>Uploaded Documents:</p>
+    <a href="{{ uploaded_documents }}" download>Download Document</a>
+{% endif %}
+
+<!-- ... -->
+<!-- ... -->
+
+<h2>Uploaded Files:</h2>
+{% if uploaded_photos %}
+    <p>Uploaded Photos:</p>
+    <img src="{{ uploaded_photos }}" alt="User Photo">
+    <a href="{{ url_for('delete_photo', user_id=user.id) }}" class="btn btn-danger">Delete Photo</a>
+{% endif %}
+
+{% if uploaded_documents %}
+    <p>Uploaded Documents:</p>
+    <a href="{{ uploaded_documents }}" download>Download Document</a>
+    <a href="{{ url_for('delete_document', user_id=user.id) }}" class="btn btn-danger">Delete Document</a>
+{% endif %}
+
+<!-- ... -->
+<!-- ... -->
+
+<h2>Sales Data Filter:</h2>
+<form method="GET" action="{{ url_for('user_profile', user_id=user.id) }}">
+    <div>
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search" value="{{ search_query }}">
+    </div>
+    <div>
+        <label for="start_date">Start Date:</label>
+        <input type="date" id="start_date" name="start_date" value="{{ start_date }}">
+    </div>
+    <div>
+        <label for="end_date">End Date:</label>
+        <input type="date" id="end_date" name="end_date" value="{{ end_date }}">
+    </div>
+    <div>
+        <button type="submit" class="btn btn-primary">Apply Filters</button>
+    </div>
+</form>
+
+<h2>Sales Data:</h2>
+{{ user_data|safe }}
+
+<!-- ... -->
 
 </body>
 </html>
