@@ -26,3 +26,38 @@
         </div>
     </div>
 {% endblock %}
+
+<!-- templates/upload_history.html -->
+
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Upload History</h1>
+
+    <div class="row">
+        <div class="col-md-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">File Name</th>
+                        <th scope="col">Date Uploaded</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for upload in history %}
+                        <tr>
+                            <td>{{ upload.file_name }}</td>
+                            <td>{{ upload.date_uploaded.strftime('%Y-%m-%d %H:%M:%S') }}</td>
+                            <td>
+                                <form method="POST" action="{{ url_for('delete_upload', user_id=user_id, file_name=upload.file_name) }}" onsubmit="return confirm('Are you sure you want to delete this file?');">
+                                    <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                                </form>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}
