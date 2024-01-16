@@ -45,7 +45,25 @@
 <a href="{{ url_for('register') }}" class="btn btn-primary">Register</a>
 
 <!-- ... -->
+<!-- templates/index.html -->
 
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1 class="mt-4">Welcome to the Flask App</h1>
+
+    <div class="mt-4">
+        <p>This is the home page of the Flask App. You can navigate to your user profile or log in to access your data.</p>
+        <p>
+            {% if current_user.is_authenticated %}
+                <a href="{{ url_for('user_profile', user_id=current_user.id) }}" class="btn btn-primary">Go to Profile</a>
+            {% else %}
+                <a href="{{ url_for('login') }}" class="btn btn-primary">Log In</a>
+            {% endif %}
+        </p>
+    </div>
+{% endblock %}
+    
 
 </body>
 </html>
